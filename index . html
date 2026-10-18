@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OneTask AI - Text to Video</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#090d1a;color:white}
+header{padding:22px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #252b40}
+.logo{font-size:25px;font-weight:bold;color:#8b9cff}
+.badge{background:#202741;padding:9px 14px;border-radius:20px;font-size:12px}
+main{max-width:850px;margin:65px auto;padding:20px;text-align:center}
+h1{font-size:clamp(35px,7vw,58px);margin-bottom:15px}
+h1 span{color:#8b9cff}
+.subtitle{color:#aab2c9;line-height:1.7}
+.card{background:#131a2d;border:1px solid #2b3553;border-radius:22px;padding:25px;margin-top:35px;text-align:left}
+label{display:block;margin:15px 0 10px;font-weight:bold}
+textarea,select{width:100%;padding:15px;border-radius:12px;border:1px solid #394361;background:#0c1222;color:white;font-size:16px}
+textarea{height:130px;resize:vertical}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+button{width:100%;padding:16px;margin-top:22px;border:0;border-radius:12px;background:linear-gradient(90deg,#6878ff,#a05cff);color:white;font-size:17px;font-weight:bold;cursor:pointer}
+#result{display:none;margin-top:20px;padding:18px;border-radius:12px;background:#202741;line-height:1.6}
+footer{text-align:center;color:#78829e;padding:35px 15px;font-size:13px}
+@media(max-width:500px){main{margin:35px auto}.options{grid-template-columns:1fr}.card{padding:18px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">✦ OneTask AI</div>
+<div class="badge">AI CREATION STUDIO</div>
+</header>
+<main>
+<h1>Turn Your Ideas Into <span>Videos</span></h1>
+<p class="subtitle">Your imagination starts here. Describe your idea and prepare your next video project.</p>
+<div class="card">
+<h2>🎬 Create your video</h2>
+<label for="prompt">Describe your video</label>
+<textarea id="prompt" placeholder="Example: A futuristic city in India at sunset, cinematic camera movement..."></textarea>
+<div class="options">
+<div>
+<label for="style">Video style</label>
+<select id="style">
+<option>Cinematic</option>
+<option>Realistic</option>
+<option>Anime</option>
+<option>3D Animation</option>
+<option>Nature</option>
+</select>
+</div>
+<div>
+<label for="ratio">Aspect ratio</label>
+<select id="ratio">
+<option>16:9 - YouTube</option>
+<option>9:16 - Shorts / Reels</option>
+<option>1:1 - Square</option>
+</select>
+</div>
+</div>
+<button onclick="generate()">✨ Prepare My Video</button>
+<div id="result"></div>
+</div>
+</main>
+<footer>OneTask AI · Create something amazing</footer>
+<script>
+function generate(){
+const prompt=document.getElementById('prompt').value.trim();
+const result=document.getElementById('result');
+if(!prompt){alert('Please describe your video idea first.');return;}
+result.style.display='block';
+result.innerHTML='<strong>✅ Your video brief is ready!</strong><br><br><b>Idea:</b> '+escapeText(prompt)+'<br><b>Style:</b> '+document.getElementById('style').value+'<br><b>Format:</b> '+document.getElementById('ratio').value+'<br><br>This is the first website prototype. Actual AI video generation will be added by connecting a video-generation service.';
+}
+function escapeText(s){
+const d=document.createElement('div');
+d.textContent=s;
+return d.innerHTML;
+}
+</script>
+</body>
+</html>
